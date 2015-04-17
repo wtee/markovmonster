@@ -1,8 +1,8 @@
 import random
 
-def eat(text_file):
+def eat(text_file, encoding='utf-8'):
     """Reads a file. Returns an array of words with punctuation."""
-    with open(text_file, 'r') as f:
+    with open(text_file, 'r', encoding=encoding) as f:
         words = f.read().split()
     return words
         

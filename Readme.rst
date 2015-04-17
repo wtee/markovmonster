@@ -11,8 +11,9 @@ Here's an example of how you might::
  
  corpus = 'a_file_full_of.txt'
 
- # Convert file into an array of words
- array_of_words = mm.eat(corpus)
+ # Convert file into an array of words. Optional second
+ # argument specifies text encoding and defaults to utf-8
+ array_of_words = mm.eat(corpus, 'utf-8')
 
  # Convert the array to a generator that returns tuples of 
  # the length specified in the second argument. If omitted,
@@ -33,5 +34,5 @@ Or::
  
  corpus = 'a_file_full_of.txt'
  
- mm.vomit(mm.digest(mm.chew(mm.eat(corpus, 3))), 100)
+ mm.vomit(mm.digest(mm.chew(mm.eat(corpus), 3)), 100)
 
