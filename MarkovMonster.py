@@ -1,18 +1,21 @@
 import random
 
+
 def eat(text_file, encoding='utf-8'):
     """Reads a file. Returns an array of words with punctuation."""
     with open(text_file, 'r', encoding=encoding) as f:
         words = f.read().split()
     return words
-        
+
+
 def chew(words, length=3):
     """Reads an array of strings. Returns a generator of tuples."""
     wc = len(words)
     if wc < length:
         return
-    for i in range(wc - length -1):
+    for i in range(wc - length - 1):
         yield tuple(words[i:i + length])
+
 
 def digest(cud):
     """Reads tuples. Returns a dictionary."""
@@ -20,6 +23,7 @@ def digest(cud):
     for i in cud:
         corpus.setdefault(i[:-1], []).append(i[-1])
     return corpus
+
 
 def vomit(corpus, length=20):
     """Reads dictionary. Returns a generated text string."""
