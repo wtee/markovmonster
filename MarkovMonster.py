@@ -34,8 +34,10 @@ def eat(text_file, unit='word'):
 def chew(links, key_length=2):
     """Reads an array of strings. Returns a generator of tuples."""
     wc = len(links)
+
     if wc < key_length + 1:
         return
+
     for i in range(wc - key_length):
         yield tuple(links[i:i + key_length + 1])
 
@@ -43,17 +45,27 @@ def chew(links, key_length=2):
 def digest(cud):
     """Reads tuples. Returns a dictionary."""
     corpus = {}
+
     for i in cud:
         corpus.setdefault(i[:-1], []).append(i[-1])
+
     return corpus
 
 
-def vomit(corpus, length=20):
+def vomit(corpus, length=20, spaces=True):
     """Reads dictionary. Returns a generated text string."""
-    out_text = []
+
+    text = []
     seed = random.choice(list(corpus.keys()))
+
     for _ in range(length):
-        out_text.append(seed[0])
+        text.append(seed[0])
         seed = seed[1:] + (random.choice(corpus[seed]),)
-    out_text.append(seed[-1])
-    return ' '.join(out_text)
+    text.append(seed[-1])
+
+    if spaces:
+        out = ' '.join(text)
+    else:
+        out = ''.join(text)
+
+    return out
